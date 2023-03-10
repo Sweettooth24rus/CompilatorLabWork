@@ -17,8 +17,4 @@ public interface Lexeme {
             getValue()
         );
     }
-
-    static Boolean contains(char code) {
-        return false;
-    }
 }
