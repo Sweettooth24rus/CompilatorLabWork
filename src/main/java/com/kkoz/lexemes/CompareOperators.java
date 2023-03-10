@@ -17,11 +17,7 @@ public enum CompareOperators implements Lexeme {
         .toList();
 
     public static Boolean contains(char code) {
-        return contains(String.valueOf(code));
-    }
-
-    public static Boolean contains(String code) {
-        return valueList.contains(code);
+        return valueList.contains(String.valueOf(code));
     }
 
     public static CompareOperators getByText(char code) {
