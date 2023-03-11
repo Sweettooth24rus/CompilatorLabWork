@@ -77,7 +77,7 @@ public class LexemeService {
 
     private void getDigit(char[] chars, int i, List<Token> result) throws SyntaxException {
         var word = new StringBuilder();
-        while (i < chars[i] && (Character.isDigit(chars[i]) || chars[i] == ',')) {
+        while (i < chars[i] && (Character.isDigit(chars[i]) || chars[i] == ',' || chars[i] == 'e')) {
             word.append(chars[i++]);
         }
 
