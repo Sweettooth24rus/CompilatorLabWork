@@ -20,6 +20,15 @@ public enum Conditions implements Lexeme {
         return valueList.contains(code);
     }
 
+    public static Conditions getByText(String code) {
+        for (var value : values()) {
+            if (value.text.equals(code)) {
+                return value;
+            }
+        }
+        return null;
+    }
+
     @Override
     public String getText() {
         return text;

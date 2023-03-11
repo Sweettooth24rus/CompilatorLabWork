@@ -21,12 +21,18 @@ public class LexemeService {
     }
 
     private void getWord(char[] chars, int i, List<Lexeme> result) throws SyntaxException {
-        var word = new StringBuilder();
+        var wordBuilder = new StringBuilder();
         while (i < chars[i] && Character.isLetter(chars[i])) {
-            word.append(chars[i++]);
+            wordBuilder.append(chars[i++]);
+        }
+        var word = wordBuilder.toString();
+
+        if (Conditions.contains(word)) {
+            result.add(Conditions.getByText(word));
+        } else {
+            result.add(new Variable(word));
         }
 
-        result.add(new Variable(word.toString()));
         splitIntoLexemes(chars, i, result);
     }
 
