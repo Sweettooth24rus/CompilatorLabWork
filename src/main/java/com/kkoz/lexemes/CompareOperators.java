@@ -1,10 +1,12 @@
 package com.kkoz.lexemes;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
 @AllArgsConstructor
 public enum CompareOperators implements Lexeme {
     GREATER(">"),
@@ -31,12 +33,7 @@ public enum CompareOperators implements Lexeme {
     }
 
     @Override
-    public String getText() {
-        return text;
-    }
-
-    @Override
     public String getTypeName() {
-        return "Оператор сравнения";
+        return String.format("Оператор сравнения: \"%s\"", text);
     }
 }

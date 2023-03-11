@@ -1,19 +1,21 @@
 package com.kkoz.lexemes;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
 @AllArgsConstructor
 public enum RoundBraces implements Lexeme {
     START('('),
     END(')');
 
-    private char text;
+    private final char text;
 
     private static final List<Character> valueList = Arrays.stream(values())
-        .map(elem -> elem.text)
+        .map(RoundBraces::getText)
         .toList();
 
     public static Boolean contains(char code) {
@@ -30,12 +32,7 @@ public enum RoundBraces implements Lexeme {
     }
 
     @Override
-    public String getText() {
-        return String.valueOf(text);
-    }
-
-    @Override
     public String getTypeName() {
-        return "Фигурные скобки";
+        return String.format("Фигурные скобка: \"%s\"", text);
     }
 }

@@ -1,16 +1,18 @@
 package com.kkoz.lexemes;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
 @AllArgsConstructor
 public enum CurlyBraces implements Lexeme {
     START('{'),
     END('}');
 
-    private char text;
+    private final char text;
 
     private static final List<Character> valueList = Arrays.stream(values())
         .map(elem -> elem.text)
@@ -30,12 +32,7 @@ public enum CurlyBraces implements Lexeme {
     }
 
     @Override
-    public String getText() {
-        return String.valueOf(text);
-    }
-
-    @Override
     public String getTypeName() {
-        return "Фигурные скобки";
+        return String.format("Фигурная скобка: \"%s\"", text);
     }
 }

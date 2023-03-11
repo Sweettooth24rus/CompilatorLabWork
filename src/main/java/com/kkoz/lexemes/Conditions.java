@@ -1,10 +1,12 @@
 package com.kkoz.lexemes;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
 @AllArgsConstructor
 public enum Conditions implements Lexeme {
     IF("if"),
@@ -30,12 +32,7 @@ public enum Conditions implements Lexeme {
     }
 
     @Override
-    public String getText() {
-        return text;
-    }
-
-    @Override
     public String getTypeName() {
-        return "Условный оператор";
+        return String.format("Условный оператор \"%s\"", text);
     }
 }

@@ -1,21 +1,22 @@
 package com.kkoz;
 
+import com.kkoz.exceptions.BracesException;
+import com.kkoz.exceptions.SyntaxException;
 import com.kkoz.lexemes.LexemeService;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Application {
-    public static void main(String[] args) throws SyntaxException {
+    public static void main(String[] args) throws SyntaxException, BracesException {
         var lexemeService = new LexemeService();
         var code = readFile();
         System.out.println();
         System.out.println(code);
-        var lexemes = lexemeService.splitIntoLexemes(code.toCharArray(), 0, new ArrayList<>());
-        for (var lexeme : lexemes) {
-            System.out.println(lexeme.getLexeme());
+        var tokens = lexemeService.splitByLexemes(code.toCharArray());
+        for (var token : tokens) {
+            System.out.println(token.getInfo());
         }
     }
 
