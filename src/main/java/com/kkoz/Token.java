@@ -1,37 +1,19 @@
 package com.kkoz;
 
-import com.kkoz.lexemes.Lexeme;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+// Класс отвечающий за объекты токенов
+public class Token {
 
-@Data
-@RequiredArgsConstructor
-public class Token<L extends Lexeme> {
-    private final L lexeme;
-    private final String code;
-    private String value;
-    private final Integer index;
+    public TokenTypes.Types type; // Тип токена
+    public String value; // Его значение
 
-    public Token(L lexeme, char code, Integer index) {
-        this.lexeme = lexeme;
-        this.code = String.valueOf(code);
-        this.index = index;
+    // Конструктор
+    public Token(TokenTypes.Types type, String value) {
+        this.type = type;
+        this.value = value;
     }
 
-    public String getTypeName() {
-        return lexeme.getTypeName();
-    }
-
-    public String getInfo() {
-        return String.format(
-            "%s\t\t%s\t\t%s",
-            code,
-            lexeme.getTypeName(),
-            value
-        );
-    }
-
-    public Boolean equalsByLexeme(Lexeme lexeme) {
-        return lexeme.equals(this.lexeme);
+    // Нужно дла отладки
+    public String toString() {
+        return "Token(" + type.name() + " : '" + value.toString() + "')";
     }
 }
