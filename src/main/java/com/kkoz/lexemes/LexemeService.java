@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LexemeService {
-
     public List<Token> splitByLexemes(char[] chars) throws SyntaxException, BracesException {
         var tokenList = splitByLexemes(chars, 0, new ArrayList<>());
 
@@ -61,13 +60,15 @@ public class LexemeService {
 
     private void getWord(char[] chars, int i, List<Token> result) throws SyntaxException {
         var wordBuilder = new StringBuilder();
-        while (i < chars[i] && Character.isLetter(chars[i])) {
+        while (Character.isLetter(chars[i])) {
             wordBuilder.append(chars[i++]);
         }
         var word = wordBuilder.toString();
 
         if (Conditions.contains(word)) {
             result.add(new Token<>(Conditions.getByText(word), word, i));
+        } else if (Types.contains(word)) {
+            result.add(new Token<>(Types.getByText(word), word, i));
         } else {
             result.add(new Token<>(new Variable(), word, i));
         }
@@ -77,7 +78,7 @@ public class LexemeService {
 
     private void getDigit(char[] chars, int i, List<Token> result) throws SyntaxException {
         var word = new StringBuilder();
-        while (i < chars[i] && (Character.isDigit(chars[i]) || chars[i] == ',' || chars[i] == 'e')) {
+        while (Character.isDigit(chars[i]) || chars[i] == ',' || chars[i] == 'e') {
             word.append(chars[i++]);
         }
 
