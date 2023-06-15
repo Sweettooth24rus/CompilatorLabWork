@@ -90,6 +90,8 @@ public class LexemeService {
         if ((i < chars.length - 1) && Assign.contains(chars[i]) && Assign.contains(chars[i + 1])) {
             result.add(new Token<>(CompareOperators.EQUALS, CompareOperators.EQUALS.getText(), i));
             i++;
+        } else if (Operators.contains(chars[i])) {
+            result.add(new Token<>(Operators.getByText(chars[i]), chars[i], i));
         } else if (CompareOperators.contains(chars[i])) {
             result.add(new Token<>(CompareOperators.getByText(chars[i]), chars[i], i));
         } else if (Assign.contains(chars[i])) {
