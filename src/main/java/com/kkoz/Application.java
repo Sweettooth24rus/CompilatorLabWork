@@ -12,10 +12,13 @@ public class Application {
     public static void main(String[] args) throws SyntaxException, BracesException {
         var lexemeService = new LexemeService();
         var identifierService = new IdentifierService();
+        var syntaxService = new SyntaxService();
+
+        System.out.println();
 
         var code = readFile();
-        System.out.println();
         System.out.println(code);
+        System.out.println();
 
         var tokens = lexemeService.splitByLexemes(code.toCharArray());
         for (var token : tokens) {
@@ -27,6 +30,9 @@ public class Application {
         for (var i = 0; i < identifiers.length; i++) {
             System.out.println(i + "\t" + identifiers[i]);
         }
+        System.out.println();
+
+        System.out.println(syntaxService.getTree(tokens));
         System.out.println();
     }
 
